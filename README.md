@@ -1,2 +1,4 @@
 # myjava
-My Java use cases
+
+My Java use cases 😁
+
