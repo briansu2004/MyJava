@@ -1,22 +1,22 @@
 /**
  * calculates the subtotal, taxes, and grand total to buy items from Emily's eClips
  *
- * modified 20210809
- * date 20210809
- * @filename FrmClipsForm.java
+ * modified 20210813
+ * date 20210813
+ * @filename ClipPurchaseCalculator.java
  * @author Emily Su
  * @version 1.0
  */
 // note: "HClips" stands for hair clips
 // note: "PClips" stands for paper clips
-public class FrmClipsForm extends javax.swing.JFrame {
+public class ClipPurchaseCalculator extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L; // https://stackoverflow.com/questions/2288937/what-does-it-mean-the-serializable-class-does-not-declare-a-static-final-serial
 
     /**
      * Creates new form FrmClipsForm
      */
-    public FrmClipsForm() {
+    public ClipPurchaseCalculator() {
         initComponents();
     }
 
@@ -87,7 +87,7 @@ public class FrmClipsForm extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Emily's eClips!");
-        lblTitle.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        lblTitle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,14 +163,11 @@ public class FrmClipsForm extends javax.swing.JFrame {
             }
         });
 
-	// https://www.bcicrafts.com/Jumbo-Metal-Paper-Clips-4-Pink-12-pc_p_2186.html
-        lblPinkPClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./pinkpaperclips.jpeg"))); // NOI18N
+        lblPinkPClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./pinkpaperclips.jpeg"))); // https://www.bcicrafts.com/Jumbo-Metal-Paper-Clips-4-Pink-12-pc_p_2186.html
 
-	// https://wyqixiang.en.made-in-china.com/product/OKexjqTMlChJ/China-Nickel-Plated-Boat-Shaped-Paper-Clip-QX-PC007-43-50mm.html
-        lblGreyPClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./greypaperclips.jpeg"))); // NOI18N
+        lblGreyPClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./greypaperclips.jpeg"))); // https://wyqixiang.en.made-in-china.com/product/OKexjqTMlChJ/China-Nickel-Plated-Boat-Shaped-Paper-Clip-QX-PC007-43-50mm.html
 
-	// https://www.bcicrafts.com/Jumbo-Metal-Paper-Clips-4-Purple-12-pc_p_2187.html
-        lblPurplePClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./purplepaperclips.jpeg"))); // NOI18N
+        lblPurplePClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./purplepaperclips.jpeg"))); // https://www.bcicrafts.com/Jumbo-Metal-Paper-Clips-4-Purple-12-pc_p_2187.html
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -284,14 +281,11 @@ public class FrmClipsForm extends javax.swing.JFrame {
             }
         });
 
-	// https://www.amazon.ca/Just-Basic-Black-Metal-Clips/dp/B008S5743A 
-        lblBlackHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./blackhairclips.png"))); // NOI18N
+        lblBlackHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./blackhairclips.png"))); // https://www.amazon.ca/Just-Basic-Black-Metal-Clips/dp/B008S5743A
 
-	// https://www.etsy.com/market/pink_hair_clip
-        lblPinkHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./pinkhairclips.jpg"))); // NOI18N
+        lblPinkHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./pinkhairclips.jpg"))); // https://www.etsy.com/market/pink_hair_clip
 
-	// https://www.monkhouse.com/p/4768/Unicol-Click-Clack-Purple-Hair-Clips
-        lblPurpleHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./purplehairclips.jpeg"))); // NOI18N
+        lblPurpleHClipsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("./purplehairclips.jpeg"))); // https://www.monkhouse.com/p/4768/Unicol-Click-Clack-Purple-Hair-Clips
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -330,7 +324,7 @@ public class FrmClipsForm extends javax.swing.JFrame {
                         .addComponent(lblQuantity_3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(txtPinkHClips, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,36 +404,37 @@ public class FrmClipsForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblInstructions_3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblnstructions_4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(52, 52, 52)
                         .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(lblResultStatus))
+                        .addComponent(lblSubtitleSubtotal)
+                        .addGap(41, 41, 41)
+                        .addComponent(lblValueSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(lblSubtitleSubtotal)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblValueSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(lblSubtitleTaxes))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblValueTaxes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(lblSubtitleGrandTotal)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblValueGrandTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblSubtitleStatus))))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(lblSubtitleTaxes)
+                        .addGap(65, 65, 65)
+                        .addComponent(lblValueTaxes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSubtitleGrandTotal)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblValueGrandTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSubtitleStatus))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblResultStatus)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,25 +445,24 @@ public class FrmClipsForm extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(lblnstructions_4)))
-                .addGap(10, 10, 10)
+                .addGap(12, 12, 12)
                 .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubtitleSubtotal)
                     .addComponent(lblValueSubtotal))
                 .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubtitleTaxes)
                     .addComponent(lblValueTaxes))
                 .addGap(58, 58, 58)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubtitleGrandTotal)
                     .addComponent(lblValueGrandTotal))
                 .addGap(50, 50, 50)
                 .addComponent(lblSubtitleStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblResultStatus)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(lblResultStatus))
         );
 
         lblHairClips.setFont(new java.awt.Font("Bangla MN", 0, 13)); // NOI18N
@@ -499,7 +493,7 @@ public class FrmClipsForm extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(47, 47, 47)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +540,6 @@ public class FrmClipsForm extends javax.swing.JFrame {
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
 
-        // declare
         int blackHClips;
         int purpleHClips;
         int pinkHClips;
@@ -567,7 +560,6 @@ public class FrmClipsForm extends javax.swing.JFrame {
         double taxesRounded;
         double grandTotalRounded;
 
-        // prompt and retrieve user information
         blackHClips = Integer.parseInt(txtBlackHClips.getText());
         purpleHClips = Integer.parseInt(txtPurpleHClips.getText());
         pinkHClips = Integer.parseInt(txtPinkHClips.getText());
@@ -575,7 +567,6 @@ public class FrmClipsForm extends javax.swing.JFrame {
         purplePClips = Integer.parseInt(txtPurplePClips.getText());
         pinkPClips = Integer.parseInt(txtPinkPClips.getText());
 
-        // calculations
         subtotal = blackHClips * BLACK_H_CLIPS_PRICE + purpleHClips * PURPLE_H_CLIPS_PRICE
                 + pinkHClips * PINK_H_CLIPS_PRICE + greyPClips * GREY_P_CLIPS_PRICE
                 + purplePClips * PURPLE_P_CLIPS_PRICE + pinkPClips * PINK_P_CLIPS_PRICE;
@@ -587,7 +578,6 @@ public class FrmClipsForm extends javax.swing.JFrame {
         taxesRounded = Math.round(taxes * 100.0) / 100.0; // https://www.delftstack.com/howto/java/how-to-round-a-double-to-two-decimal-places-in-java/
         grandTotalRounded = Math.round(grandTotal * 100.0) / 100.0; // https://www.delftstack.com/howto/java/how-to-round-a-double-to-two-decimal-places-in-java/
 
-        // output
         if (blackHClips < 0 || purpleHClips < 0 || pinkHClips < 0 || greyPClips < 0 || purplePClips < 0
                 || pinkPClips < 0) {
             lblResultStatus.setText("Error. Do not use negative values!");
@@ -641,20 +631,27 @@ public class FrmClipsForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmClipsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClipPurchaseCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmClipsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClipPurchaseCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmClipsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClipPurchaseCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmClipsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClipPurchaseCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmClipsForm().setVisible(true);
+                new ClipPurchaseCalculator().setVisible(true);
             }
         });
     }
