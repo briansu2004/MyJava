@@ -7,16 +7,22 @@ import reactor.core.publisher.Flux;
 import java.io.IOException;
 
 @Log4j2
-public class WebClientStockClient {
+public class WebClientStockClient implements StockClient {
 	private WebClient webClient;
 
 	public WebClientStockClient(WebClient webClient) {
 		this.webClient = webClient;
 	}
 
+	@Override
 	public Flux<StockPrice> priceFor(String symbol) {
-		//return Flux.fromArray(new StockPrice[0]);
-		return webClient.get().uri("localhost:8080/stocks/{symbol}", symbol).retrieve().bodyToFlux(StockPrice.class).retry(5)
+		log.info("WebClient stock client");
+
+		return webClient.get()
+			.uri("localhost:8080/stocks/{symbol}", symbol)
+			.retrieve()
+			.bodyToFlux(StockPrice.class)
+			.retry(5)
 			.doOnError(IOException.class, e -> log.error(e.getMessage()));
 	}
 }
