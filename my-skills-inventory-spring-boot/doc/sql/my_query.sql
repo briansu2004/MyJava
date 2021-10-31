@@ -4,7 +4,7 @@ use skill_inventory;
 
 DROP TABLE IF EXISTS skill;
 
-CREATE TABLE IF NOT EXISTS skill (
+CREATE TABLE IF NOT EXISTS skillskillskill (
     skill_id INT AUTO_INCREMENT PRIMARY KEY,
     skill_name VARCHAR(255) NOT NULL,
     skill_name_long VARCHAR(1000),
@@ -16,4 +16,15 @@ CREATE TABLE IF NOT EXISTS skill (
 
 
 select * from skill;
+
+#INSERT INTO SKILL (skill_name) VALUES ('AI');
+
+SELECT s FROM skill s WHERE s.skill_name LIKE '%azure%';
+
+SELECT * FROM skill WHERE skill_name LIKE '%azure%';
+
+#Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  
+#To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.000 sec
+#update skill set priority = 1;
+update skill set priority = 1 where priority = 0;
 

@@ -1,7 +1,7 @@
 package com.sutek.myskillsinventoryspringboot.model;
 
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serial;
+import java.io.Serializable;
 
 /*
 DROP TABLE IF EXISTS skill;
@@ -27,26 +29,29 @@ CREATE TABLE IF NOT EXISTS skill (
 
 @Data
 @Entity
-@Table(name="skill")
-public class Skill {
+@Table(name = "skill")
+public class Skill implements Serializable {
+	@Serial
+	private static final long serialVersionUID = -445535152796997762L;
+
 	@Id
-	@Column(name="skill_id")
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name = "skill_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long skillId;
 
-	@Column(name="skill_name", nullable = false)
+	@Column(name = "skill_name", nullable = false)
 	private String skillName;
 
-	@Column(name="skill_name_long")
+	@Column(name = "skill_name_long")
 	private String skillNameLong;
 
-	@Column(name="skill_description")
+	@Column(name = "skill_description")
 	private String skillDescription;
 
-	@Column(name="status")
+	@Column(name = "status")
 	private int skillStatus;
 
-	@Column(name="priority")
+	@Column(name = "priority")
 	private int skillPriority;
 
 	@Override

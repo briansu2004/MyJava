@@ -10,17 +10,17 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException implements Serializable {
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class ValidationException extends RuntimeException implements Serializable {
 	@Serial
-	private static final long serialVersionUID = 8422386685076342421L;
+	private static final long serialVersionUID = 6041209436836918L;
 
-	private String resourceName;
+	private String operationName;
 	private String fieldName;
 	private Object fieldValue;
 
-	public ResourceNotFoundException(String resourceName, String fieldName, Object fieldValue) {
-		this.resourceName = resourceName;
+	public ValidationException(String operationName, String fieldName, Object fieldValue) {
+		this.operationName = operationName;
 		this.fieldName = fieldName;
 		this.fieldValue = fieldValue;
 	}
