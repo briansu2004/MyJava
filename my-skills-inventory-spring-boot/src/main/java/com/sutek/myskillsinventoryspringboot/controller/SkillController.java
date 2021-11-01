@@ -247,6 +247,7 @@ public class SkillController {
 	// Update one skill by Id (completely)
 	// PUT
 	// http://localhost:8080/api/v1/skill-inventory/skills/2
+	//@CrossOrigin(origins = "http://localhost:8089")
 	@PutMapping(value = "skills/{id}")
 	public ResponseEntity<Skill> updateSkill(@RequestBody Skill skill, @PathVariable("id") long skillId) {
 		return new ResponseEntity<Skill>(skillService.updateSkill(skill, skillId), HttpStatus.OK);

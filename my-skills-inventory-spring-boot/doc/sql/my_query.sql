@@ -14,8 +14,10 @@ CREATE TABLE IF NOT EXISTS skillskillskill (
     created_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+#ALTER TABLE `skill_inventory`.`skill` DROP COLUMN `dtype`;
 
 select * from skill;
+select * from skill where name like '%%';
 
 #INSERT INTO SKILL (skill_name) VALUES ('AI');
 
@@ -26,5 +28,5 @@ SELECT * FROM skill WHERE skill_name LIKE '%azure%';
 #Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  
 #To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.000 sec
 #update skill set priority = 1;
-update skill set priority = 1 where priority = 0;
+#update skill set priority = 1 where priority = 0;
 

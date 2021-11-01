@@ -6,12 +6,21 @@ import com.sutek.myskillsinventoryspringboot.model.Skill;
 import com.sutek.myskillsinventoryspringboot.repository.FieldFilterSkillRepository;
 import com.sutek.myskillsinventoryspringboot.repository.SkillRepository;
 import com.sutek.myskillsinventoryspringboot.service.SkillService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
+@Transactional
 public class SkillServiceImpl implements SkillService {
 	@Autowired
 	private final SkillRepository skillRepository;
@@ -19,20 +28,22 @@ public class SkillServiceImpl implements SkillService {
 	@Autowired
 	private final FieldFilterSkillRepository fieldFilterSkillRepository;
 
-	public SkillServiceImpl(SkillRepository skillRepository, FieldFilterSkillRepository fieldFilterSkillRepository) {
-		super();
-		this.skillRepository = skillRepository;
-		this.fieldFilterSkillRepository = fieldFilterSkillRepository;
-	}
+//	public SkillServiceImpl(SkillRepository skillRepository, FieldFilterSkillRepository fieldFilterSkillRepository) {
+//		super();
+//		this.skillRepository = skillRepository;
+//		this.fieldFilterSkillRepository = fieldFilterSkillRepository;
+//	}
 
 	// GET
 	// http://localhost:8080/api/v1/skill-inventory/skills
 	@Override
+	@Cacheable("skills")
 	public List<Skill> getAllSkills() {
 		return skillRepository.findAll();
 	}
 
 	@Override
+	@Cacheable("field-filter-skills")
 	public List<FieldFilterSkill> getAllFieldFilterSkills() {
 		return fieldFilterSkillRepository.findAll();
 	}
@@ -40,6 +51,7 @@ public class SkillServiceImpl implements SkillService {
 	// GET
 	// http://localhost:8080/api/v1/skill-inventory/skills/1
 	@Override
+	@Cacheable(cacheNames = "skill", key = "#skillId")
 	public Skill getSkillById(long skillId) {
 		return skillRepository.findById(skillId).orElseThrow(() -> new ResourceNotFoundException("Skill", "skillId", skillId));
 	}
@@ -54,6 +66,7 @@ public class SkillServiceImpl implements SkillService {
 	// PUT
 	// http://localhost:8080/api/v1/skill-inventory/skills/2
 	@Override
+	@CachePut(value = "skills", key = "#skill.skillId")
 	public Skill updateSkill(Skill skill, long skillId) {
 		// Fetch the skill to be updated
 		Skill existingSkill = skillRepository.findById(skillId).orElseThrow(() -> new ResourceNotFoundException("Skill", "Id", skillId));
@@ -74,6 +87,7 @@ public class SkillServiceImpl implements SkillService {
 	// PATCH
 	// http://localhost:8080/api/v1/skill-inventory/skills/3
 	@Override
+	@CachePut(value = "skills", key = "#skill.skillId")
 	public Skill patchSkill(Skill skill, long skillId) {
 		// Fetch the skill to be updated
 		Skill existingSkill = skillRepository.findById(skillId).orElseThrow(() -> new ResourceNotFoundException("Skill", "Id", skillId));
@@ -108,6 +122,7 @@ public class SkillServiceImpl implements SkillService {
 	// DELETE
 	// http://localhost:8080/api/v1/skill-inventory/skills/4
 	@Override
+	@CachePut(value = "skill", key = "#skillId")
 	public void deleteSkill(long skillId) {
 		// Check the skill to be deleted
 		skillRepository.findById(skillId).orElseThrow(() -> new ResourceNotFoundException("Skill", "Id", skillId));

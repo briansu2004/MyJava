@@ -8,17 +8,49 @@ In business disruption, a skills inventory can help align company goals with emp
 
 A skills inventory is the collection of skills, education, and experiences of employees. Skills inventories capture the professional expertise, attributes, and abilities of your workforce. A centralized skills inventory provides a point-in-time view of the skills (and skills gaps) of a workforce. But the inventory should be a dynamic system, regularly updated to reflect changes in team members, skills, and professional credentials.
 
-## Swagger
+## API Specification / Documentation
 
-```
-?
+### OpenAPI Swagger
+
+v3 or v2?
+
+```yaml
+WIP
 ```
 
 ### Prefix
 
 /api/v1/skill-inventory/
 
+### TMF?
+
+?
+
 ### Operations
+
+#### POST /login
+
+Login -> authenticate and authorization.
+
+i.e.
+POST http://localhost:8080/api/v1/login
+
+Provide these in the headers:
+
+- client ID or username
+- client secret or password
+
+Get these from the results:
+
+- access_token
+- refresh_token
+
+#### GET /token/refresh
+
+Refresh the token.
+
+i.e.
+GET http://localhost:8080/api/v1/token/refresh
 
 #### GET /skills
 
@@ -219,53 +251,91 @@ DELETE http://localhost:8080/api/v1/skill-inventory/skills/4
 }
 ```
 
+### Postman collection
+
+?
+
 ## Tech stacks
 
 ### Back end
 
 ```
 Java
-    JDK 17
-    Spring Boot
-    JPA
-    Lombok
-    json-patch
-    ObjectMapper
+  JDK 17
+  Spring Boot
+  JPA
+  Lombok
+  Spring cache abstraction
+  json-patch
+  ObjectMapper
 REST
 MySQL
 ```
 
 ```xml
 <dependency>
-    <groupId>com.github.java-json-tools</groupId>
-    <artifactId>json-patch</artifactId>
-    <version>1.13</version>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-cache</artifactId>
+  <version>2.5.0</version>
+</dependency>
+```
+
+There is another module named spring-context-support, which sits on top of the spring-context module and provides a few more CacheManagers backed by the likes of EhCache or Caffeine.
+
+Since the spring-context-support module transitively depends on the spring-context module, there is no need for a separate dependency declaration for the spring-context.
+
+```xml
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context-support</artifactId>
+  <version>5.3.3</version>
 </dependency>
 ```
 
 ```xml
 <dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-core</artifactId>
-    <version>2.12.5</version>
+  <groupId>javax.cache</groupId>
+  <artifactId>cache-api</artifactId>
 </dependency>
+
 <dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-annotations</artifactId>
-    <version>2.12.5</version>
-</dependency>
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.12.5</version>
+  <groupId>org.ehcache</groupId>
+  <artifactId>ehcache</artifactId>
+  <version>3.9.6</version>
 </dependency>
 ```
 
 ```xml
 <dependency>
-    <groupId>com.github.bohnman</groupId>
-    <artifactId>squiggly-filter-jackson</artifactId>
-    <version>1.3.18</version>
+  <groupId>com.github.java-json-tools</groupId>
+  <artifactId>json-patch</artifactId>
+  <version>1.13</version>
+</dependency>
+```
+
+```xml
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-core</artifactId>
+  <version>2.12.5</version>
+</dependency>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-annotations</artifactId>
+  <version>2.12.5</version>
+</dependency>
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+  <version>2.12.5</version>
+</dependency>
+```
+
+```xml
+<dependency>
+  <groupId>com.github.bohnman</groupId>
+  <artifactId>squiggly-filter-jackson</artifactId>
+  <version>1.3.18</version>
 </dependency>
 ```
 
@@ -283,7 +353,9 @@ Category
 Keyword
 Years
 Relationship
-Projects
+Projects (href)
+Wiki URL
+GitHub URL
 
 ### Dependencies
 
@@ -304,6 +376,53 @@ Value is an alias to Path.
 Using JsonPatch or not?
 
 Too much boilerplate and troubles if using JsonPatch.
+
+### Caching
+
+#### How to implement Caching
+
+(1) Dependencies
+
+Spring cache abstraction
+
+(2) @Cacheable("skills")
+
+(3) @EnableCaching
+
+#### Addtional caching choices
+
+- Redis
+  Redis is an in-memory key-value data structure store that can be used as a database, cache, and message broker.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-redis</artifactId>
+  <version>2.5.0</version>
+</dependency>
+```
+
+- Caffeine
+  Caffeine is a high-performance, near-optimal caching library providing an in-memory cache using a Google Guava inspired API.
+
+```xml
+<dependency>
+  <groupId>com.github.ben-manes.caffeine</groupId>
+  <artifactId>caffeine</artifactId>
+  <version>3.0.2</version>
+</dependency>
+```
+
+- Couchbase
+  Couchbase is a distributed NoSQL cloud database that also offers a fully integrated caching layer, providing high-speed data access.
+
+```xml
+<dependency>
+  <groupId>com.couchbase.client</groupId>
+  <artifactId>java-client</artifactId>
+  <version>3.1.5</version>
+</dependency>
+```
 
 ### Searching / Filtering
 
@@ -411,13 +530,94 @@ Replace with GraphQL.
 
 ### Error handling (ControllerAdvice)
 
-### Duplicates / Overwitten
+### Duplicates / Overwritten
 
 ### Abbreviation and Variation
 
+### Performance / Caching
+
+Retrieve all skills from DB and cache them.
+
+Any POST/PUT/PATCH/DELETE will invert the cache.
+
 ### Security
 
-### oAuth, JWT
+#### How to implement the security
+
+With Spring Security,h JWT including Access and Refresh Tokens!
+
+The API callers need to login first - provide the client ID and client secret (or username + password)
+then use generated tokens (access_token + refresh_token) to access APIs.
+
+Encoded tokens can be decoded at jwt.io :-)
+
+#### Spring Security
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.security</groupId>
+  <artifactId>spring-security-test</artifactId>
+  <scope>test</scope>
+</dependency>
+```
+
+### oAuth 2, JWT
+
+- Authorization Server (AS)
+  Simply put, an Authorization Server is an application that issues tokens for authorization.
+
+  Previously, the Spring Security OAuth stack offered the possibility of setting up an Authorization Server as a Spring Application. But the project has been deprecated, mainly because OAuth is an open standard with many well-established providers such as Okta, Keycloak, and ForgeRock etc.
+
+  Keycloak. It's an open-source Identity and Access Management server administered by Red Hat, developed in Java, by JBoss. It supports not only OAuth2 but also other standard protocols such as OpenID Connect and SAML.
+
+  oauth-authorization-server is a Keycloak Authorization Server wrapped as a Spring Boot application.
+
+  There is one OAuth Client registered in the Authorization Server:
+  Client Id: newClient
+  Client secret: newClientSecret
+  Redirect Uri: http://localhost:8089/
+
+- Resource Server (RS)
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+</dependency>
+```
+
+oauth-resource-server is a Spring Boot based RESTFul API, acting as a backend Application.
+
+```yml
+server:
+  port: 8081
+  servlet:
+    context-path: /resource-server
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8083/auth/realms/baeldung
+          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
+```
+
+The jwk-set-uri property points to the URI containing the public key so that our Resource Server can verify the tokens' integrity.
+
+The issuer-uri property represents an additional security measure to validate the issuer of the tokens (which is the Authorization Server). However, adding this property also mandates that the Authorization Server should be running before we can start the Resource Server application.
+
+#### Spring Profile
+
+#### API key
+
+#### Rate limit
+
+### CORS
 
 ### Use sub-resources for relations
 
@@ -445,12 +645,6 @@ Hypermedia as the Engine of Application State is a principle that hypertext link
   ]
 }
 ```
-
-### Performance / Caching
-
-Retrieve all skills from DB and cache them.
-
-Any POST/PUT/PATCH/DELETE will invert the cache.
 
 ### Version
 
@@ -481,6 +675,8 @@ StringUtils.isEmpty() has been deprecated and should be replaced by ObjectUtils.
 Entity looks better!
 But it doesn't work well :-(
 Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
+
+### Change log
 
 ## Misc
 
@@ -538,6 +734,69 @@ spring.banner.image.invert= //TODO
 422 – Unprocessable Entity – Should be used if the server cannot process the enitity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
 500 – Internal Server Error – API developers should avoid this error. If an error occurs in the global catch blog, the stracktrace should be logged and not returned as response.
 ```
+
+### Some annotations
+
+@Override
+@Deprecated
+@SpringBootApplication
+@Entity // Makes this class to be a JPA entity
+@Getter // Creates setters for all the fields in the class
+@Setter // Creates getters for all the fields in the class
+@Builder // Creates a builder pattern for this class
+@NoArgsConstructor // Creates a constructor with no arguements for this class
+@AllArgsConstructor // Creates a constructor with all arguements for this class
+@Id // Marks the Id as the primary key
+@GeneratedValue(strategy = GenerationType.AUTO) //@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "id", nullable = false)
+@Column(name = "skill_name", nullable = false)
+@NotNull
+@ManyToOne
+@OneToMany(targetEntity = Project.class, mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+@ManyToMany(fetch = EAGER)
+@JoinColumn(name = "project_id")
+@Data
+@Table(name = "skill")
+@JsonFilter("fieldFilter")
+@Repository
+@CacheConfig(cacheNames={"skills"})
+@Cacheable("skills")
+@Cacheable({"skills", "projects"})
+@Cacheable(cacheNames = "skills")
+@Cacheable(cacheNames = "skill", key = "#id")
+@CachePut(value = "skills", key = "#skill.skillId")
+@CachePut(value = "skill", key = "#skillId")
+@EnableCaching
+@Configuration
+@Bean
+@Component
+@Service
+@Autowired
+@RestController
+@RequestMapping("/api/v1/skill-inventory")
+@GetMapping(value = "skillsPaging")
+@RequestParam(name = "order", required = false)
+@PostMapping(value = "skills")
+@PutMapping(value = "skills/{id}")
+@PatchMapping(value = "skills/{id}")
+@DeleteMapping(value = "skills/{id}")
+@ResponseStatus(value = HttpStatus.OK)
+@AuthenticationPrincipal
+@CrossOrigin(origins = "http://localhost:8089")
+@Validated
+@PreAuthorize
+@PostAuthorize
+@Slf4j
+@Transactional
+@RequiredArgsConstructor
+@EnableWebSecurity
+
+### Ports
+
+- 8080: API
+- 8081: Resource Server
+- 8083: Authorization Server
+- 8089: Redirect URI
 
 ## Skills
 
@@ -975,3 +1234,43 @@ Solaris
 ![029.png](doc/images/029.png)
 ![030.png](doc/images/030.png)
 ![031.png](doc/images/031.png)
+
+## Change log
+
+2021-10-29
+
+- Came up the business idea
+- Did the brainstorming
+- Completed the basic design
+- Finalized the tech stacks
+- Set up the DB
+- Initialized with Spring initializer
+- Created the Spring Boot project
+- Finished the basic CRUD operations
+
+2021-10-30
+
+- Published the 1st version to GitHub
+- Updated the README.md
+- Finished the initial data load
+- Added lots of more TODO features
+- Worked on advanced API developments (i.e. field selection, sorting etc.)
+- API design pattern and best practice
+- Streaming API vs DB queries
+- Lombok vs JPA
+
+2021-10-31
+
+- Published the 2nd version to GitHub
+- Updated the README.md
+- Updated more TODO features
+- Worked on advanced API developments (i.e. caching, paging etc.)
+- Started security features
+- oAuth, JWT tokens, Spring Security
+
+2021-11-01
+
+- Published the 3rd version to GitHub
+- Updated the README.md
+- ...
+- ...
