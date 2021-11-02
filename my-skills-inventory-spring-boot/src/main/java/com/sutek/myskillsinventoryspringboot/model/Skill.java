@@ -1,17 +1,26 @@
 package com.sutek.myskillsinventoryspringboot.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFilter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /*
 DROP TABLE IF EXISTS skill;
@@ -28,7 +37,11 @@ CREATE TABLE IF NOT EXISTS skill (
  */
 
 @Data
+@Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = "projects")
 @Table(name = "skill")
 public class Skill implements Serializable {
 	@Serial
@@ -54,15 +67,13 @@ public class Skill implements Serializable {
 	@Column(name = "priority")
 	private int skillPriority;
 
-	@Override
-	public String toString() {
-		return "Skill{" +
-			"skillId=" + skillId +
-			", skillName='" + skillName + '\'' +
-			", skillNameLong='" + skillNameLong + '\'' +
-			", skillDescription='" + skillDescription + '\'' +
-			", skillStatus=" + skillStatus +
-			", skillPriority=" + skillPriority +
-			'}';
-	}
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+		name = "project_skill",
+		joinColumns = @JoinColumn(name = "skill_id"),
+		inverseJoinColumns = @JoinColumn(name = "project_id"))
+	private List<Project> projects;
+
+//	@ManyToMany(mappedBy = "skills", fetch = FetchType.EAGER)
+//	private List<Project> projects;
 }

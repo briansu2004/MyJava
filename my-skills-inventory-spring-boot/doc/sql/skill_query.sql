@@ -4,7 +4,7 @@ use skill_inventory;
 
 DROP TABLE IF EXISTS skill;
 
-CREATE TABLE IF NOT EXISTS skillskillskill (
+CREATE TABLE IF NOT EXISTS skill (
     skill_id INT AUTO_INCREMENT PRIMARY KEY,
     skill_name VARCHAR(255) NOT NULL,
     skill_name_long VARCHAR(1000),

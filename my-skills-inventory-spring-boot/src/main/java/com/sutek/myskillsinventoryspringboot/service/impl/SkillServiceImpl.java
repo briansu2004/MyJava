@@ -8,7 +8,6 @@ import com.sutek.myskillsinventoryspringboot.repository.SkillRepository;
 import com.sutek.myskillsinventoryspringboot.service.SkillService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -22,10 +21,9 @@ import java.util.List;
 @Slf4j
 @Transactional
 public class SkillServiceImpl implements SkillService {
-	@Autowired
+
 	private final SkillRepository skillRepository;
 
-	@Autowired
 	private final FieldFilterSkillRepository fieldFilterSkillRepository;
 
 //	public SkillServiceImpl(SkillRepository skillRepository, FieldFilterSkillRepository fieldFilterSkillRepository) {
@@ -122,7 +120,7 @@ public class SkillServiceImpl implements SkillService {
 	// DELETE
 	// http://localhost:8080/api/v1/skill-inventory/skills/4
 	@Override
-	@CachePut(value = "skill", key = "#skillId")
+	@CacheEvict(value = "skill", key = "#skillId")
 	public void deleteSkill(long skillId) {
 		// Check the skill to be deleted
 		skillRepository.findById(skillId).orElseThrow(() -> new ResourceNotFoundException("Skill", "Id", skillId));

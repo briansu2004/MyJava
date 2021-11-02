@@ -6,13 +6,26 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.sutek.myskillsinventoryspringboot.exception.ResourceNotFoundException;
 import com.sutek.myskillsinventoryspringboot.exception.ValidationException;
+import com.sutek.myskillsinventoryspringboot.hateoas.ProjectModel;
+import com.sutek.myskillsinventoryspringboot.hateoas.ProjectModelAssembler;
+import com.sutek.myskillsinventoryspringboot.hateoas.SkillModel;
+import com.sutek.myskillsinventoryspringboot.hateoas.SkillModelAssembler;
 import com.sutek.myskillsinventoryspringboot.helper.ApiConstants;
 import com.sutek.myskillsinventoryspringboot.model.FieldFilterSkill;
+import com.sutek.myskillsinventoryspringboot.model.Project;
 import com.sutek.myskillsinventoryspringboot.model.Skill;
+import com.sutek.myskillsinventoryspringboot.repository.ProjectRepository;
+import com.sutek.myskillsinventoryspringboot.repository.SkillRepository;
+import com.sutek.myskillsinventoryspringboot.service.ProjectService;
 import com.sutek.myskillsinventoryspringboot.service.SkillService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,12 +44,59 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/skill-inventory")
+@AllArgsConstructor
+@NoArgsConstructor
+@Slf4j
+@Transactional
 public class SkillController {
-	private final SkillService skillService;
+	@Autowired
+	private SkillRepository skillRepository;
 
-	public SkillController(SkillService skillService) {
-		super();
-		this.skillService = skillService;
+	@Autowired
+	private SkillService skillService;
+
+	@Autowired
+	private SkillModelAssembler skillModelAssembler;
+
+	@Autowired
+	private ProjectRepository projectRepository;
+
+	@Autowired
+	private ProjectService projectService;
+
+	@Autowired
+	private ProjectModelAssembler projectModelAssembler;
+
+//	public SkillController(SkillService skillService) {
+//		super();
+//		this.skillService = skillService;
+//	}
+
+	// Get all projects
+	// GET
+	// http://localhost:8080/api/v1/project-inventory/projects
+	@GetMapping(value = "projects")
+	public ResponseEntity<List<Project>> getAllProjects() {
+		return new ResponseEntity<List<Project>>(projectService.getAllProjects(), HttpStatus.OK);
+	}
+
+	// Get one project by Id
+	// GET
+	// http://localhost:8080/api/v1/project-inventory/projects/1
+
+	// No HATEOAS
+	@GetMapping(value = "projects-no-hateoas/{id}")
+	public ResponseEntity<Project> getProjectById(@PathVariable("id") long projectId) {
+		return new ResponseEntity<Project>(projectService.getProjectById(projectId), HttpStatus.OK);
+	}
+
+	// HATEOAS
+	@GetMapping(value = "projects/{id}")
+	public ResponseEntity<ProjectModel> getProjectModelById(@PathVariable("id") long projectId) {
+		return projectRepository.findById(projectId)
+			.map(projectModelAssembler::toModel)
+			.map(ResponseEntity::ok)
+			.orElse(ResponseEntity.notFound().build());
 	}
 
 	// Get all skills
@@ -56,13 +116,24 @@ public class SkillController {
 	// http://localhost:8080/api/v1/skill-inventory/skills/1
 	//
 	// Use Java 8 Stream API?
-	@GetMapping(value = "skills/{id}")
+
+	// No HATEOAS
+	@GetMapping(value = "skills-no-hateoas/{id}")
 	public ResponseEntity<Skill> getSkillById(@PathVariable("id") long skillId) {
 		return new ResponseEntity<Skill>(skillService.getSkillById(skillId), HttpStatus.OK);
 	}
 //	public Skill getSkillById(@PathVariable("id") long skillId) {
 //		return skillService.getSkillById(skillId);
 //	}
+
+	// HATEOAS
+	@GetMapping(value = "skills/{id}")
+	public ResponseEntity<SkillModel> getSkillModelById(@PathVariable("id") long skillId) {
+		return skillRepository.findById(skillId)
+			.map(skillModelAssembler::toModel)
+			.map(ResponseEntity::ok)
+			.orElse(ResponseEntity.notFound().build());
+	}
 
 	// Filtering/searching skills by keyword
 	// GET
@@ -186,8 +257,8 @@ public class SkillController {
 	//
 	// The default values are limit=20 and offset=0.
 	@GetMapping(value = "skillsPaging")
-	public ResponseEntity<List<Skill>> skillPaging(@RequestParam(name="offset", required = false) String offset,
-	                                               @RequestParam(name="limit", required = false) String limit) {
+	public ResponseEntity<List<Skill>> skillPaging(@RequestParam(name = "offset", required = false) String offset,
+	                                               @RequestParam(name = "limit", required = false) String limit) {
 
 		long pageOffset, pageLimit;
 

@@ -66,6 +66,59 @@ Get one skill by Id.
 i.e.
 GET http://localhost:8080/api/v1/skill-inventory/skills/1
 
+(Updated)
+
+http://localhost:8080/api/v1/skill-inventory/skills/3:
+
+```json
+{
+  "skillId": 3,
+  "skillName": "Java",
+  "skillNameLong": "Java Programming Language",
+  "skillDescription": "Java",
+  "skillStatus": 1,
+  "skillPriority": 1
+}
+```
+
+->
+
+http://localhost:8080/api/v1/skill-inventory/skills/3:
+
+```json
+{
+  "skillId": 3,
+  "skillName": "Java",
+  "skillNameLong": "Java Programming Language",
+  "skillDescription": "Java",
+  "skillStatus": 1,
+  "skillPriority": 1,
+  "projects": [
+    {
+      "_self": "http://localhost:8080/api/v1/skill-inventory/skills/3/projects/1",
+      "name": "Seashell Phase 2"
+    },
+    {
+      "_self": "http://localhost:8080/api/v1/skill-inventory/skills/3/projects/2",
+      "name": "CPIN"
+    }
+  ]
+}
+```
+
+and
+
+http://localhost:8080/api/v1/skill-inventory/skills/3/projects/1:
+
+```json
+{
+  "projectId": 1,
+  "projectName": "Seashell Phase 2",
+  "projectDescription": "Extend Warranty Sales Management API REST",
+  "projectStatus": 0
+}
+```
+
 #### GET /skillsSearch?keyword=$keyword
 
 Searching/Filtering skills by keyword.
@@ -250,6 +303,20 @@ DELETE http://localhost:8080/api/v1/skill-inventory/skills/4
   "skillPriority": 1
 }
 ```
+
+#### GET /projects
+
+Get all projects.
+
+i.e.
+GET http://localhost:8080/api/v1/skill-inventory/projects
+
+#### GET /projects/{id}
+
+Get one project by Id.
+
+i.e.
+GET http://localhost:8080/api/v1/skill-inventory/projects/1
 
 ### Postman collection
 
@@ -621,7 +688,7 @@ The issuer-uri property represents an additional security measure to validate th
 
 ### Use sub-resources for relations
 
-### HATEOAS ?
+### HATEOAS
 
 Hypermedia as the Engine of Application State is a principle that hypertext links should be used to create a better navigation through the API.
 
@@ -645,6 +712,57 @@ Hypermedia as the Engine of Application State is a principle that hypertext link
   ]
 }
 ```
+
+#### How to implement HATEOAS
+
+Hypermedia-Driven RESTful!
+
+(1) Dependencies:
+
+- Spring HATEOAS
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-hateoas</artifactId>
+</dependency>
+```
+
+- JSON Library
+
+```xml
+<dependency>
+  <groupId>com.jayway.jsonpath</groupId>
+  <artifactId>json-path</artifactId>
+  <scope>test</scope>
+</dependency>
+```
+
+(2) Configure JPA entities and repositories
+
+```java
+@ManyToMany(cascade=CascadeType.ALL)
+@JoinTable(
+  name = "project_skill",
+  joinColumns = @JoinColumn(name = "project_id"),
+  inverseJoinColumns = @JoinColumn(name = "skill_id"))
+```
+
+(3) Create a Resource Representation Class
+
+DTO?
+
+Extend the domain class with RepresentationModel
+
+Create Representation model assemblers
+
+(4) Create a REST Controller
+
+Create instances of this class
+
+Populate the properties and enrich it with links
+
+(5) Test the Service
 
 ### Version
 
@@ -790,6 +908,13 @@ spring.banner.image.invert= //TODO
 @Transactional
 @RequiredArgsConstructor
 @EnableWebSecurity
+@JsonCreator
+@JsonProperty
+@JsonRootName(value = "skill")
+@Relation(collectionRelation = "projects")
+@JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode(callSuper = false)
+@ToString(exclude = "clients")
 
 ### Ports
 
@@ -1272,5 +1397,6 @@ Solaris
 
 - Published the 3rd version to GitHub
 - Updated the README.md
-- ...
+- Updated data model (added more tables with relationship)
+- Updated GET operations to include project information with HATEOAS
 - ...
