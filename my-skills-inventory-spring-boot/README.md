@@ -426,6 +426,77 @@ GitHub URL
 
 ### Dependencies
 
+### TMF
+
+#### TMF 630
+
+##### TMF 630 REST API Design Guidelines
+
+TMF630 v4.0.1 (May, 2020)
+
+- Part 1 : RESTful API naming, CRUD, filtering, notifications
+- Part 2 : Polymorphism, extension patterns, depth and expand directive, entity RefOrValue
+- Part 3 : Hypermedia support extension
+- Part 4 : Lifecycle management and common tasks (export and import jobs)
+- Part 5 : JSON Patch extension to manage arrays
+- Part 6 : JSON Path extension
+- Part 7 : JSON Schema patterns
+
+##### TMF 630 Minimum Conformance Checklist
+
+- Documentation is provided in Swagger/OAS 2.0
+
+- URL is formatted correctly, including naming and versioning
+
+- Routing uses resource/task-based paths
+
+- HTTP verbs are used to select action against a resource
+
+- Response uses appropriate HTTP status codes
+
+- Response header contains details about the response body
+
+- Response body is a resource/task presented using JSON
+
+- Error responses utilize the Error resource as the response body
+
+- If this is a TMF Open API, any mandatory fields in the entity exist
+
+- If this is a TMF Open API, any customizations must utilize the TMF extension pattern
+
+- If this is a TMF Open API, the Conformance Test Kit must be run and must pass
+
+##### TMF 630 Minimum Compliance Requirement
+
+- URL query string can be used by the consumer to modify the response content
+
+  - Select (FIELDS)
+  - Sort (SORT)
+  - Match criteria
+  - Page (LIMIT,OFFSET)
+  - Detail (DEPTH,EXPAND)
+
+- Hypermedia links to other relevant resources are provided in responses
+
+- The /home path provides a JSON-LD Hypermedia summary of available functions
+
+- Event subscription is enabled via the Hub
+
+- If any resources have versions, they utilize the TMF version format
+
+- If any operations are asynchronous, they utilize the TMF monitor pattern
+
+##### TMF620 Product Catalog Management
+
+- Swagger (Apache 2.0 or RAND)
+- API User Guide Specification (RAND)
+- Conformance Profile (RAND)
+- CTK
+- Sample Implementation Code
+- Postman Collection
+
+##### TMF637 Product Inventory
+
 ### API Naming Conventions
 
 REST Resource Naming Guide
@@ -852,6 +923,35 @@ spring.banner.image.invert= //TODO
 422 – Unprocessable Entity – Should be used if the server cannot process the enitity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
 500 – Internal Server Error – API developers should avoid this error. If an error occurs in the global catch blog, the stracktrace should be logged and not returned as response.
 ```
+
+### HTTP headers
+
+- Accepts
+- Content-Type
+  values:
+  application/json
+  application/xml
+  Accept-Language
+  Content-Language
+- Accept-Language
+- Content-Language
+  values:
+  en_GB
+  fr_CA
+- Content-Length
+- ETag
+- Last-Modified
+- Location
+- X-Total-Count
+- Cache-Control
+- Expires
+- Date
+- X-Rate-Limit-Limit
+- X-Rate-Limit-Remaining
+- X-Rate-Limit-Reset
+- Accept-Range:items
+- Range:items=i-j
+- Content-Range:items i-j/n
 
 ### Some annotations
 
@@ -1399,4 +1499,12 @@ Solaris
 - Updated the README.md
 - Updated data model (added more tables with relationship)
 - Updated GET operations to include project information with HATEOAS
+
+2021-11-02
+
+- TMF630
 - ...
+
+2021-11-03
+
+-
