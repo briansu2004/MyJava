@@ -22,4 +22,6 @@ select * from project;
 # project_id, client_id, project_name, project_description, status, created_dt
 #'1', '1', 'Seashell Phase 2', 'Extend Warranty Sales Management API REST', '0', '2021-11-01 01:44:11'
 
+commit;
+
 

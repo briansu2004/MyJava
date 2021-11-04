@@ -12,10 +12,52 @@ A skills inventory is the collection of skills, education, and experiences of em
 
 ### OpenAPI Swagger
 
-v3 or v2?
+http://editor.swagger.io
+
+v3 or v2
+YAML or JSON
 
 ```yaml
-WIP
+openapi: 3.0.0
+
+info:
+  version: 0.0.1
+  title: Library Service
+  description: The library service
+
+tags:
+  - name: "Library"
+
+paths:
+  /library/books:
+    get:
+      summary: This is summary
+      tags:
+        - "Library"
+      description: This is a description
+      operationId: getAllBooksInLibrary
+      responses:
+        "200":
+          description: This means its ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+
+components:
+  schemas:
+    Book:
+      description: This is the book model
+      type: object
+      properties:
+        name:
+          description: The name of book
+          type: string
+        bookAuthor:
+          description: name of author
+          type: string
 ```
 
 ### Prefix
@@ -404,6 +446,62 @@ Since the spring-context-support module transitively depends on the spring-conte
   <artifactId>squiggly-filter-jackson</artifactId>
   <version>1.3.18</version>
 </dependency>
+```
+
+```xml
+<dependencies>
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.21</version>
+  </dependency>
+  <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-models</artifactId>
+      <version>1.6.0</version>
+  </dependency>
+  <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.10.3</version>
+  </dependency>
+  <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+  </dependency>
+</dependencies>
+
+<build>
+  <plugins>
+      <plugin>
+          <groupId>io.swagger.codegen.v3</groupId>
+          <artifactId>swagger-codegen-maven-plugin</artifactId>
+          <version>3.0.18</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>generate</goal>
+                  </goals>
+                  <configuration>
+                      <inputSpec>${project.basedir}/src/main/resources/test-api.yaml</inputSpec>
+                      <language>spring</language>
+                      <output>${project.build.directory}/generated-sources/</output>
+                      <generateSupportingFiles>false</generateSupportingFiles>
+                      <apiPackage>com.example.api</apiPackage>
+                      <modelPackage>com.example.models</modelPackage>
+                      <configOptions>
+                          <interfaceOnly>true</interfaceOnly>
+                      </configOptions>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
+  </plugins>
+</build>
 ```
 
 ### Front end
@@ -866,6 +964,14 @@ But it doesn't work well :-(
 Using @Data for JPA entities is not recommended. It can cause severe performance and memory consumption issues.
 
 ### Change log
+
+### Spring Boot NoClassFound error
+
+- Remove all files from .m2 folder
+- Maven refresh
+- Maven clean
+- Maven install
+- Re-run Spring Boot
 
 ## Misc
 
@@ -1502,9 +1608,21 @@ Solaris
 
 2021-11-02
 
+- TMF
 - TMF630
-- ...
+- README.md
 
 2021-11-03
 
--
+- README.md
+- Swagger YAML
+
+2021-11-04
+
+- README.md
+- ...
+
+2021-11-04
+
+- README.md
+- ...
