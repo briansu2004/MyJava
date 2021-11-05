@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.sutek.myskillsinventoryspringboot.exception.ResourceNotFoundException;
 import com.sutek.myskillsinventoryspringboot.exception.ValidationException;
-import com.sutek.myskillsinventoryspringboot.hateoas.ProjectModel;
-import com.sutek.myskillsinventoryspringboot.hateoas.ProjectModelAssembler;
-import com.sutek.myskillsinventoryspringboot.hateoas.SkillModel;
-import com.sutek.myskillsinventoryspringboot.hateoas.SkillModelAssembler;
+import com.sutek.myskillsinventoryspringboot.domain.ProjectModel;
+import com.sutek.myskillsinventoryspringboot.domain.ProjectModelAssembler;
+import com.sutek.myskillsinventoryspringboot.domain.SkillModel;
+import com.sutek.myskillsinventoryspringboot.domain.SkillModelAssembler;
 import com.sutek.myskillsinventoryspringboot.helper.ApiConstants;
 import com.sutek.myskillsinventoryspringboot.model.FieldFilterSkill;
 import com.sutek.myskillsinventoryspringboot.model.Project;
@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,30 +68,31 @@ public class SkillController {
 	@Autowired
 	private ProjectModelAssembler projectModelAssembler;
 
-//	public SkillController(SkillService skillService) {
-//		super();
-//		this.skillService = skillService;
-//	}
-
+	// HATEOAS
 	// Get all projects
 	// GET
 	// http://localhost:8080/api/v1/project-inventory/projects
 	@GetMapping(value = "projects")
+	public ResponseEntity<CollectionModel<ProjectModel>> getAllProjectModels() {
+		List<Project> projects = projectRepository.findAll();
+		return new ResponseEntity<>(
+			projectModelAssembler.toCollectionModel(projects),
+			HttpStatus.OK);
+	}
+
+	// No HATEOAS
+	// Get all projects
+	// GET
+	// http://localhost:8080/api/v1/project-inventory/projects-no-hateoas
+	@GetMapping(value = "projects-no-hateoas")
 	public ResponseEntity<List<Project>> getAllProjects() {
 		return new ResponseEntity<List<Project>>(projectService.getAllProjects(), HttpStatus.OK);
 	}
 
-	// Get one project by Id
-	// GET
-	// http://localhost:8080/api/v1/project-inventory/projects/1
-
-	// No HATEOAS
-	@GetMapping(value = "projects-no-hateoas/{id}")
-	public ResponseEntity<Project> getProjectById(@PathVariable("id") long projectId) {
-		return new ResponseEntity<Project>(projectService.getProjectById(projectId), HttpStatus.OK);
-	}
-
 	// HATEOAS
+	// Get all projects
+	// GET
+	// http://localhost:8080/api/v1/project-inventory/projects
 	@GetMapping(value = "projects/{id}")
 	public ResponseEntity<ProjectModel> getProjectModelById(@PathVariable("id") long projectId) {
 		return projectRepository.findById(projectId)
@@ -99,34 +101,51 @@ public class SkillController {
 			.orElse(ResponseEntity.notFound().build());
 	}
 
+	// No HATEOAS
+	// Get one project by Id
+	// GET
+	// http://localhost:8080/api/v1/project-inventory/projects-no-hateoas/1
+	@GetMapping(value = "projects-no-hateoas/{id}")
+	public ResponseEntity<Project> getProjectById(@PathVariable("id") long projectId) {
+		return new ResponseEntity<Project>(projectService.getProjectById(projectId), HttpStatus.OK);
+	}
+
+	// No HATEOAS
+	// Get all skills
+	// GET
+	// http://localhost:8080/api/v1/skill-inventory/skills-no-hateoas
+	@GetMapping(value = "skills-no-hateoas")
+	public ResponseEntity<List<Skill>> getAllSkills() {
+		return new ResponseEntity<List<Skill>>(skillService.getAllSkills(), HttpStatus.OK);
+	}
+
+	// HATEOAS
 	// Get all skills
 	// GET
 	// http://localhost:8080/api/v1/skill-inventory/skills
 	@GetMapping(value = "skills")
-	public ResponseEntity<List<Skill>> getAllSkills() {
-		return new ResponseEntity<List<Skill>>(skillService.getAllSkills(), HttpStatus.OK);
+	public ResponseEntity<CollectionModel<SkillModel>> getAllSkillModels() {
+		List<Skill> skills = skillRepository.findAll();
+		return new ResponseEntity<>(
+			skillModelAssembler.toCollectionModel(skills),
+			HttpStatus.OK);
 	}
-//	public List<Skill> getAllSkills() {
-//		return skillService.getAllSkills();
-//	}
-//
-
-	// Get one skill by Id
-	// GET
-	// http://localhost:8080/api/v1/skill-inventory/skills/1
-	//
-	// Use Java 8 Stream API?
 
 	// No HATEOAS
+	// Get one skill by Id
+	// GET
+	// http://localhost:8080/api/v1/skill-inventory/skills-no-hateoas/1
+	//
+	// Use Java 8 Stream API?
 	@GetMapping(value = "skills-no-hateoas/{id}")
 	public ResponseEntity<Skill> getSkillById(@PathVariable("id") long skillId) {
 		return new ResponseEntity<Skill>(skillService.getSkillById(skillId), HttpStatus.OK);
 	}
-//	public Skill getSkillById(@PathVariable("id") long skillId) {
-//		return skillService.getSkillById(skillId);
-//	}
 
 	// HATEOAS
+	// Get one skill by Id
+	// GET
+	// http://localhost:8080/api/v1/skill-inventory/skills/1
 	@GetMapping(value = "skills/{id}")
 	public ResponseEntity<SkillModel> getSkillModelById(@PathVariable("id") long skillId) {
 		return skillRepository.findById(skillId)

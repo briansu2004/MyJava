@@ -1,4 +1,4 @@
-package com.sutek.myskillsinventoryspringboot.hateoas;
+package com.sutek.myskillsinventoryspringboot.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -21,24 +21,29 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "project")
-@Relation(collectionRelation = "projects")
+@JsonRootName(value = "skill")
+@Relation(collectionRelation = "skills")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProjectModel extends RepresentationModel<ProjectModel> {
-
+public class SkillModel extends RepresentationModel<SkillModel> {
 	@Id
-	@Column(name = "project_id")
+	@Column(name = "skill_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long projectId;
+	private long skillId;
 
-	@Column(name = "project_name", nullable = false)
-	private String projectName;
+	@Column(name = "skill_name", nullable = false)
+	private String skillName;
 
-	@Column(name = "project_description")
-	private String projectDescription;
+	@Column(name = "skill_name_long")
+	private String skillNameLong;
+
+	@Column(name = "skill_description")
+	private String skillDescription;
 
 	@Column(name = "status")
-	private int projectStatus;
+	private int skillStatus;
 
-	private List<SkillModel> skills;
+	@Column(name = "priority")
+	private int skillPriority;
+
+	private List<ProjectModel> projects;
 }

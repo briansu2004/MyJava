@@ -937,6 +937,10 @@ Populate the properties and enrich it with links
 
 ### Unit Testing
 
+### Automation Testing
+
+### DevOps CI/CD
+
 ### Angular app UI
 
 ### React app UI
@@ -944,6 +948,12 @@ Populate the properties and enrich it with links
 ### Upgrade to GraphQL
 
 ### Neo4j
+
+### Docker
+
+### Paas / OpenShift
+
+### Cloud Native
 
 ## Troubleshooting
 
@@ -1014,113 +1024,6 @@ spring.banner.image.invert= //TODO
  ▀▀▀▀▀▀▀▀▀▀   ▀         ▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀        ▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
 
 ```
-
-### HTTP status codes
-
-```
-200 – OK – Eyerything is working
-201 – OK – New resource has been created
-204 – OK – The resource was successfully deleted
-304 – Not Modified – The client can use cached data
-400 – Bad Request – The request was invalid or cannot be served. The exact error should be explained in the error payload. E.g. "The JSON is not valid"
-401 – Unauthorized – The request requires an user authentication
-403 – Forbidden – The server understood the request, but is refusing it or the access is not allowed.
-404 – Not found – There is no resource behind the URI.
-422 – Unprocessable Entity – Should be used if the server cannot process the enitity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
-500 – Internal Server Error – API developers should avoid this error. If an error occurs in the global catch blog, the stracktrace should be logged and not returned as response.
-```
-
-### HTTP headers
-
-- Accepts
-- Content-Type
-  values:
-  application/json
-  application/xml
-  Accept-Language
-  Content-Language
-- Accept-Language
-- Content-Language
-  values:
-  en_GB
-  fr_CA
-- Content-Length
-- ETag
-- Last-Modified
-- Location
-- X-Total-Count
-- Cache-Control
-- Expires
-- Date
-- X-Rate-Limit-Limit
-- X-Rate-Limit-Remaining
-- X-Rate-Limit-Reset
-- Accept-Range:items
-- Range:items=i-j
-- Content-Range:items i-j/n
-
-### Some annotations
-
-@Override
-@Deprecated
-@SpringBootApplication
-@Entity // Makes this class to be a JPA entity
-@Getter // Creates setters for all the fields in the class
-@Setter // Creates getters for all the fields in the class
-@Builder // Creates a builder pattern for this class
-@NoArgsConstructor // Creates a constructor with no arguements for this class
-@AllArgsConstructor // Creates a constructor with all arguements for this class
-@Id // Marks the Id as the primary key
-@GeneratedValue(strategy = GenerationType.AUTO) //@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "id", nullable = false)
-@Column(name = "skill_name", nullable = false)
-@NotNull
-@ManyToOne
-@OneToMany(targetEntity = Project.class, mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-@ManyToMany(fetch = EAGER)
-@JoinColumn(name = "project_id")
-@Data
-@Table(name = "skill")
-@JsonFilter("fieldFilter")
-@Repository
-@CacheConfig(cacheNames={"skills"})
-@Cacheable("skills")
-@Cacheable({"skills", "projects"})
-@Cacheable(cacheNames = "skills")
-@Cacheable(cacheNames = "skill", key = "#id")
-@CachePut(value = "skills", key = "#skill.skillId")
-@CachePut(value = "skill", key = "#skillId")
-@EnableCaching
-@Configuration
-@Bean
-@Component
-@Service
-@Autowired
-@RestController
-@RequestMapping("/api/v1/skill-inventory")
-@GetMapping(value = "skillsPaging")
-@RequestParam(name = "order", required = false)
-@PostMapping(value = "skills")
-@PutMapping(value = "skills/{id}")
-@PatchMapping(value = "skills/{id}")
-@DeleteMapping(value = "skills/{id}")
-@ResponseStatus(value = HttpStatus.OK)
-@AuthenticationPrincipal
-@CrossOrigin(origins = "http://localhost:8089")
-@Validated
-@PreAuthorize
-@PostAuthorize
-@Slf4j
-@Transactional
-@RequiredArgsConstructor
-@EnableWebSecurity
-@JsonCreator
-@JsonProperty
-@JsonRootName(value = "skill")
-@Relation(collectionRelation = "projects")
-@JsonInclude(Include.NON_NULL)
-@EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "clients")
 
 ### Ports
 
@@ -1620,9 +1523,178 @@ Solaris
 2021-11-04
 
 - README.md
+- Fixed HATEOAS issue
+- The full list of TMF Open APIs
 - ...
 
-2021-11-04
+2021-11-05
 
 - README.md
 - ...
+
+2021-11-06
+
+- README.md
+- ...
+
+## Appendix
+
+### TMF
+
+- TMF666 Account Management API
+- TMF651 Agreement Management API
+- TMF915 AI Management API Component Suite
+- TMF642 Alarm Management API
+- TMF646 Appointment API
+- TMF681 Communication API
+- TMF678 Customer Bill Management API
+- TMF629 Customer Management API
+- TMF662 Entity Catalog Management API
+- TMF710 General Test Artifact Management API
+- TMF704 General Test Artifact Management API
+- TMF673 Geographic Address Management API
+- TMF674 Geographic Site Management API
+- TMF668 Partnership Type Management API
+- TMF683 Party Interaction Management API
+- TMF632 Party Management API
+- TMF669 Party Role Management API
+- TMF676 Payment Management API
+- TMF654 Prepay Balance Management API
+- TMF644 Privacy Management API
+- TMF620 Product Catalog Management API
+- TMF637 Product Inventory Management API
+- TMF679 Product Offering Qualification API
+- TMF622 Product Ordering API
+- TMF671 Promotion API
+- TMF648 Quote Management API
+- TMF634 Resource Catalog Management API
+- TMF639 Resource Inventory Management API
+- TMF652 Resource Ordering Management API
+- TMF696 Risk Management API
+- TMF699 Sales Management API
+- TMF640 Service Activation and Configuration API
+- TMF633 Service Catalog API
+- TMF638 Service Inventory Management API
+- TMF641 Service Ordering Management API
+- TMF656 Service Problem Management
+- TMF645 Service Qualification API
+- TMF657 Service Quality Management API
+- TMF653 Service Test Management API
+- TMF663 Shopping Cart API
+- TMF687 Stock Management API
+- TMF706 Test Data Management API
+- TMF705 Test Environment Management API
+- TMF708 Test Execution Management API
+- TMF707 Test Result Management API
+- TMF709 Test Scenario Management API
+- TMF621 Trouble Ticket API
+- TMF677 Usage Consumption Management API
+- TMF635 Usage Management API
+- TMF672 User Roles & Permissions API
+
+### HTTP status codes
+
+```
+200 – OK – Eyerything is working
+201 – OK – New resource has been created
+204 – OK – The resource was successfully deleted
+304 – Not Modified – The client can use cached data
+400 – Bad Request – The request was invalid or cannot be served. The exact error should be explained in the error payload. E.g. "The JSON is not valid"
+401 – Unauthorized – The request requires an user authentication
+403 – Forbidden – The server understood the request, but is refusing it or the access is not allowed.
+404 – Not found – There is no resource behind the URI.
+422 – Unprocessable Entity – Should be used if the server cannot process the enitity, e.g. if an image cannot be formatted or mandatory fields are missing in the payload.
+500 – Internal Server Error – API developers should avoid this error. If an error occurs in the global catch blog, the stracktrace should be logged and not returned as response.
+```
+
+### HTTP headers
+
+- Accepts
+- Content-Type
+  values:
+  application/json
+  application/xml
+  Accept-Language
+  Content-Language
+- Accept-Language
+- Content-Language
+  values:
+  en_GB
+  fr_CA
+- Content-Length
+- ETag
+- Last-Modified
+- Location
+- X-Total-Count
+- Cache-Control
+- Expires
+- Date
+- X-Rate-Limit-Limit
+- X-Rate-Limit-Remaining
+- X-Rate-Limit-Reset
+- Accept-Range:items
+- Range:items=i-j
+- Content-Range:items i-j/n
+
+### Java Annotations
+
+@Override
+@Deprecated
+@SpringBootApplication
+@Entity // Makes this class to be a JPA entity
+@Getter // Creates setters for all the fields in the class
+@Setter // Creates getters for all the fields in the class
+@Builder // Creates a builder pattern for this class
+@NoArgsConstructor // Creates a constructor with no arguements for this class
+@AllArgsConstructor // Creates a constructor with all arguements for this class
+@Id // Marks the Id as the primary key
+@GeneratedValue(strategy = GenerationType.AUTO) //@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "id", nullable = false)
+@Column(name = "skill_name", nullable = false)
+@NotNull
+@ManyToOne
+@OneToMany(targetEntity = Project.class, mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+@ManyToMany(fetch = EAGER)
+@JoinColumn(name = "project_id")
+@Data
+@Table(name = "skill")
+@JsonFilter("fieldFilter")
+@Repository
+@CacheConfig(cacheNames={"skills"})
+@Cacheable("skills")
+@Cacheable({"skills", "projects"})
+@Cacheable(cacheNames = "skills")
+@Cacheable(cacheNames = "skill", key = "#id")
+@CachePut(value = "skills", key = "#skill.skillId")
+@CachePut(value = "skill", key = "#skillId")
+@EnableCaching
+@Configuration
+@Bean
+@Component
+@Service
+@Autowired
+@RestController
+@RequestMapping("/api/v1/skill-inventory")
+@GetMapping(value = "skillsPaging")
+@RequestParam(name = "order", required = false)
+@PostMapping(value = "skills")
+@PutMapping(value = "skills/{id}")
+@PatchMapping(value = "skills/{id}")
+@DeleteMapping(value = "skills/{id}")
+@ResponseStatus(value = HttpStatus.OK)
+@AuthenticationPrincipal
+@CrossOrigin(origins = "http://localhost:8089")
+@Validated
+@PreAuthorize
+@PostAuthorize
+@Slf4j
+@Transactional
+@RequiredArgsConstructor
+@EnableWebSecurity
+@JsonCreator
+@JsonProperty
+@JsonRootName(value = "skill")
+@Relation(collectionRelation = "projects")
+@JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode(callSuper = false)
+@ToString(exclude = "clients")

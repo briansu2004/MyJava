@@ -1,6 +1,5 @@
-package com.sutek.myskillsinventoryspringboot.hateoas;
+package com.sutek.myskillsinventoryspringboot.domain;
 
-import com.sutek.myskillsinventoryspringboot.controller.ProjectController;
 import com.sutek.myskillsinventoryspringboot.controller.SkillController;
 import com.sutek.myskillsinventoryspringboot.model.Project;
 import com.sutek.myskillsinventoryspringboot.model.Skill;
@@ -27,7 +26,7 @@ public class SkillModelAssembler extends RepresentationModelAssemblerSupport<Ski
 		SkillModel skillModel = instantiateModel(entity);
 
 		skillModel.add(linkTo(methodOn(SkillController.class)
-			.getProjectById(entity.getSkillId()))
+			.getProjectModelById(entity.getSkillId()))
 			.withSelfRel());
 
 		skillModel.setSkillId(entity.getSkillId());
@@ -45,7 +44,7 @@ public class SkillModelAssembler extends RepresentationModelAssemblerSupport<Ski
 	public CollectionModel<SkillModel> toCollectionModel(Iterable<? extends Skill> entities) {
 		CollectionModel<SkillModel> projectModels = super.toCollectionModel(entities);
 
-		projectModels.add(linkTo(methodOn(SkillController.class).getAllSkills()).withSelfRel());
+		projectModels.add(linkTo(methodOn(SkillController.class).getAllSkillModels()).withSelfRel());
 
 		return projectModels;
 	}
@@ -62,7 +61,7 @@ public class SkillModelAssembler extends RepresentationModelAssemblerSupport<Ski
 				.projectStatus(project.getProjectStatus())
 				.build()
 				.add(linkTo(methodOn(SkillController.class)
-					.getProjectById(project.getProjectId()))
+					.getProjectModelById(project.getProjectId()))
 					.withSelfRel()))
 			.collect(Collectors.toList());
 	}

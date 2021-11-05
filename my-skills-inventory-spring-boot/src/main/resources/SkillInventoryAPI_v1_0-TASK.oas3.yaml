@@ -1,0 +1,62 @@
+openapi: 3.0.0
+
+info:
+  version: 0.0.1
+  title: Skill Inventory Service
+  description: The skill inventory service
+
+tags:
+  - name: "Skill"
+
+paths:
+  /skill-inventory/skills:
+    get:
+      summary: Get all skills
+      tags:
+        - "Skill"
+      description: Get all skills
+      operationId: getAllSkills
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Skill'
+
+components:
+  schemas:
+    Skill:
+      description: This is the skill model
+      type: object
+      properties:
+        skillId:
+          description: The id of skill
+          type: number
+        skillName:
+          description: The name of skill
+          type: string
+        skillNameLong:
+          description: The long name of skill
+          type: string
+        skillDescription:
+          description: The description of skill
+          type: string
+        skillStatus:
+          description: The status of skill
+          type: integer
+        skillPriority:
+          description: The priority of skill
+          type: integer
+
+
+
+
+
+
+
+
+
+

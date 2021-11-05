@@ -19,6 +19,8 @@ select * from project;
 
 select * from skill where skill_name in ('Java', 'API', 'Spring Boot', 'Openshift', 'REST', 'GCP', 'DevOps', 'Pipeline');
 
+-- TRUNCATE TABLE project_skill;
+
 -- INSERT INTO project_skill (project_id, skill_id) 
 -- select 1, skill_id from skill where skill_name in ('Java', 'API', 'Spring Boot', 'Openshift', 'REST', 'GCP', 'DevOps', 'Pipeline');
 
