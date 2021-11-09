@@ -955,6 +955,27 @@ Populate the properties and enrich it with links
 
 ### Cloud Native
 
+### Upgrade RestTemplate to WebClient
+
+WebClient is supposed to be the successor of RestTemplate.
+
+RestTemplate -> spring-boot-starter-web
+
+RestTemplate uses the Java Servlet API, which is based on the thread-per-request model.
+
+Consequently, the application will create many threads, which will exhaust the thread pool or occupy all the available memory.
+
+WebClient -> spring-boot-starter-webflux
+
+WebClient uses an asynchronous, non-blocking solution provided by the Spring Reactive framework.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+```
+
 ## Troubleshooting
 
 ### Dependencies
@@ -1525,16 +1546,19 @@ Solaris
 - README.md
 - Fixed HATEOAS issue
 - The full list of TMF Open APIs
-- ...
 
 2021-11-05
 
 - README.md
-- ...
 
-2021-11-06
+2021-11-08
 
-- README.md
+- TODO
+
+2021-11-09
+
+- Jmeter
+- Markdown optimize
 - ...
 
 ## Appendix
@@ -1638,63 +1662,73 @@ Solaris
 
 ### Java Annotations
 
-@Override
-@Deprecated
-@SpringBootApplication
-@Entity // Makes this class to be a JPA entity
-@Getter // Creates setters for all the fields in the class
-@Setter // Creates getters for all the fields in the class
-@Builder // Creates a builder pattern for this class
-@NoArgsConstructor // Creates a constructor with no arguements for this class
-@AllArgsConstructor // Creates a constructor with all arguements for this class
-@Id // Marks the Id as the primary key
-@GeneratedValue(strategy = GenerationType.AUTO) //@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "id", nullable = false)
-@Column(name = "skill_name", nullable = false)
-@NotNull
-@ManyToOne
-@OneToMany(targetEntity = Project.class, mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-@ManyToMany(fetch = EAGER)
-@JoinColumn(name = "project_id")
-@Data
-@Table(name = "skill")
-@JsonFilter("fieldFilter")
-@Repository
-@CacheConfig(cacheNames={"skills"})
-@Cacheable("skills")
-@Cacheable({"skills", "projects"})
-@Cacheable(cacheNames = "skills")
-@Cacheable(cacheNames = "skill", key = "#id")
-@CachePut(value = "skills", key = "#skill.skillId")
-@CachePut(value = "skill", key = "#skillId")
-@EnableCaching
-@Configuration
-@Bean
-@Component
-@Service
-@Autowired
-@RestController
-@RequestMapping("/api/v1/skill-inventory")
-@GetMapping(value = "skillsPaging")
-@RequestParam(name = "order", required = false)
-@PostMapping(value = "skills")
-@PutMapping(value = "skills/{id}")
-@PatchMapping(value = "skills/{id}")
-@DeleteMapping(value = "skills/{id}")
-@ResponseStatus(value = HttpStatus.OK)
-@AuthenticationPrincipal
-@CrossOrigin(origins = "http://localhost:8089")
-@Validated
-@PreAuthorize
-@PostAuthorize
-@Slf4j
-@Transactional
-@RequiredArgsConstructor
-@EnableWebSecurity
-@JsonCreator
-@JsonProperty
-@JsonRootName(value = "skill")
-@Relation(collectionRelation = "projects")
-@JsonInclude(Include.NON_NULL)
-@EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "clients")
+- @Override
+- @Deprecated
+- @SpringBootApplication
+- @Entity // Makes this class to be a JPA entity
+- @Getter // Creates setters for all the fields in the class
+- @Setter // Creates getters for all the fields in the class
+- @Builder // Creates a builder pattern for this class
+- @NoArgsConstructor // Creates a constructor with no arguements for this class
+- @AllArgsConstructor // Creates a constructor with all arguements for this class
+- @Id // Marks the Id as the primary key
+- @GeneratedValue(strategy = GenerationType.AUTO) //@GeneratedValue(strategy = GenerationType.IDENTITY)
+- @Column(name = "id", nullable = false)
+- @Column(name = "skill_name", nullable = false)
+- @NotNull
+- @ManyToOne
+- @OneToMany(targetEntity = Project.class, mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+- @ManyToMany(fetch = EAGER)
+- @JoinColumn(name = "project_id")
+- @Data
+- @Table(name = "skill")
+- @JsonFilter("fieldFilter")
+- @Repository
+- @CacheConfig(cacheNames={"skills"})
+- @Cacheable("skills")
+- @Cacheable({"skills", "projects"})
+- @Cacheable(cacheNames = "skills")
+- @Cacheable(cacheNames = "skill", key = "#id")
+- @CachePut(value = "skills", key = "#skill.skillId")
+- @CachePut(value = "skill", key = "#skillId")
+- @EnableCaching
+- @Configuration
+- @EnableConfigurationProperties
+- @ConfigurationProperties
+- @Bean
+- @Component
+- @Service
+- @Autowired
+- @RestController
+- @RequestMapping("/api/v1/skill-inventory")
+- @GetMapping(value = "skillsPaging")
+- @RequestParam(name = "order", required = false)
+- @PostMapping(value = "skills")
+- @PutMapping(value = "skills/{id}")
+- @PatchMapping(value = "skills/{id}")
+- @DeleteMapping(value = "skills/{id}")
+- @ResponseStatus(value = HttpStatus.OK)
+- @AuthenticationPrincipal
+- @CrossOrigin(origins = "http://localhost:8089")
+- @Validated
+- @PreAuthorize
+- @PostAuthorize
+- @Slf4j
+- @Transactional
+- @RequiredArgsConstructor
+- @EnableWebSecurity
+- @JsonCreator
+- @JsonProperty
+- @JsonRootName(value = "skill")
+- @Relation(collectionRelation = "projects")
+- @JsonInclude(Include.NON_NULL)
+- @EqualsAndHashCode(callSuper = false)
+- @ToString(exclude = "clients")
+- @Qualifier("config")
+- ...
+
+## TODO
+
+### Add expandable markdown sections
+
+### Use Jmeter to do performance test
