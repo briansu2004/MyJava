@@ -1,0 +1,36 @@
+
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó˜ŒŸ8‚çÿõî/
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÔĞÛüÿÿÿÿ8â…öî/
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ¿Œúÿÿÿÿ8„çÿõî/
+i	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÑºw8Òø†öî/
+o	java:S1003"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·• íüÿÿÿÿ8âëˆöî/
+o	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ºËˆıÿÿÿÿ8ö×‰öî/
+o	java:S100F"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğéãñşÿÿÿÿ8ĞÿŠöî/
+Y
+java:S1854J"7Remove this useless assignment to local variable "val".(€·Î»ıÿÿÿÿ8êÛÃöî/
+J
+java:S1481J"(Remove this unused "val" local variable.(€·Î»ıÿÿÿÿ8ëÛÃöî/
+i	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë¦Ît8‡ç‹öî/
+j	java:S100W"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—ü¢î8¦éŒöî/
+o	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùàÚ€şÿÿÿÿ8ïÈöî/
+j	java:S100s"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Ü¨ì8Ü‘öî/
+p	java:S100€"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ôÊØıÿÿÿÿ8˜„öî/
+p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ™ğÙùÿÿÿÿ8ÛÆ’öî/
+j	java:S100›"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô÷¾/8œ°“öî/
+k	java:S100¬"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰¤Á¡8ÒÿŠöî/
+U
+java:S1854µ"7Remove this useless assignment to local variable "key".(Õ£÷8ÓÿŠöî/
+F
+java:S1481µ"(Remove this unused "key" local variable.(Õ£÷8ÖÿŠöî/
+k	java:S100º"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¢ õ8¨ú—öî/
+k	java:S100Ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Â¬8™À¢öî/
+V	java:S106Ñ"9Replace this use of System.out or System.err by a logger.(ĞÜğµ8šÀ¢öî/
+[	java:S106Ó"9Replace this use of System.out or System.err by a logger.(Ç‡öÿÿÿÿÿ8šÀ¢öî/
+[	java:S106Õ"9Replace this use of System.out or System.err by a logger.(Œ“¯½ÿÿÿÿÿ8›À¢öî/
+[	java:S106Ø"9Replace this use of System.out or System.err by a logger.(Ô¾÷Ñøÿÿÿÿ8›À¢öî/
+V	java:S106Ú"9Replace this use of System.out or System.err by a logger.(“¢‹Ï8œÀ¢öî/
+U	java:S106Ü"9Replace this use of System.out or System.err by a logger.(Ñãñz8œÀ¢öî/
+M
+java:S5960$"+Remove this assertion from production code.(‘ˆÀ½ÿÿÿÿÿ8çÿõî/
+h
+java:S1192u"FDefine a constant instead of duplicating this literal "brian" 8 times.(ëØÛ«øÿÿÿÿ8âÆ’öî/

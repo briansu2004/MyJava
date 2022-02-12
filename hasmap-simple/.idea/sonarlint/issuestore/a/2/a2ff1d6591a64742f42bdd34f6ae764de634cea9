@@ -1,0 +1,5 @@
+
+g
+java:S6206"LRefactor this class declaration to use 'record MyKey2(int id, String name)'.(§æ·×þÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÿ”œ©
+M	java:S106"9Replace this use of System.out or System.err by a logger.(ÐýÇ,
