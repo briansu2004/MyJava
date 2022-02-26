@@ -1,0 +1,8 @@
+
+`	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(çºþƒþÿÿÿÿ
+B
+java:S1068n",Remove this unused "username" private field.(‘ó¹²
+G
+java:S1068o",Remove this unused "rolename" private field.(çñÚøûÿÿÿÿ
+f	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ý«‘¹
+k	java:S117O"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ž¤ØÇøÿÿÿÿ
