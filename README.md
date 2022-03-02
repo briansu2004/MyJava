@@ -2,3 +2,6 @@
 
 My Java use cases 😁
 
+## REST API
+
+## Misc
