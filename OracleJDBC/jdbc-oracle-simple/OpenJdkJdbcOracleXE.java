@@ -5,10 +5,12 @@ class OpenJdkJdbcOracleXE {
     public static void main(String args[]) {
         try {
             OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:@//localhost:1521/XEPDB1"); // jdbc:oracle:thin@//[hostname]:[port]/[DB service
-                                                                     // name]
+
+            // jdbc:oracle:thin@//[hostname]:[port]/[DB service name]
+            ods.setURL("jdbc:oracle:thin:@//localhost:1521/XEPDB1");
             ods.setUser("[Username]");
             ods.setPassword("[Password]");
+
             Connection conn = ods.getConnection();
 
             PreparedStatement stmt = conn.prepareStatement("SELECT 'Hello World!' FROM dual");
