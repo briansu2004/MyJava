@@ -1,7 +1,7 @@
 import java.sql.*;
 import oracle.jdbc.pool.OracleDataSource;
 
-public class OpenJdkJdbcOracleXE {
+class OpenJdkJdbcOracle {
     public static void main(String args[]) {
         try {
             OracleDataSource ods = new OracleDataSource();

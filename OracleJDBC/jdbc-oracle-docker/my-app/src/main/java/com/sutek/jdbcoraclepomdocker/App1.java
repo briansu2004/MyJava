@@ -1,7 +1,9 @@
+package com.sutek.jdbcoraclepomdocker;
+
 import java.sql.*;
 import oracle.jdbc.pool.OracleDataSource;
 
-public class OpenJdkJdbcOracleXE {
+public class App1 {
     public static void main(String args[]) {
         try {
             OracleDataSource ods = new OracleDataSource();

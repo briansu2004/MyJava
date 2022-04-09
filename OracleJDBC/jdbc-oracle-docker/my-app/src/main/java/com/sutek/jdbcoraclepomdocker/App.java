@@ -1,6 +1,8 @@
+package com.sutek.jdbcoraclepomdocker;
+
 import java.sql.*;
 
-public class OpenJdkJdbcOracle {
+public class App {
     public static void main(String args[]) {
         try {
             // step1 load the driver class
