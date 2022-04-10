@@ -8,6 +8,15 @@
 
 ![](image/README/vscode_java_jar.png)
 
+java -cp "C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar;C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple " OpenJdkJdbcOracle
+
+```
+C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple>java -cp "C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar;C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple " OpenJdkJdbcOracle
+X
+```
+
+![](image/README/nice.png)
+
 ## JdbcOracleDriverSimple
 
 JDK 17

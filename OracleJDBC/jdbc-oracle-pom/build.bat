@@ -1,6 +1,6 @@
 @cls
 
-set PATH=%PATH%;C:\Apps\apache-maven-3.8.4\bin
+@rem set PATH=%PATH%;C:\Apps\apache-maven-3.8.4\bin
 
 cd demo
 
