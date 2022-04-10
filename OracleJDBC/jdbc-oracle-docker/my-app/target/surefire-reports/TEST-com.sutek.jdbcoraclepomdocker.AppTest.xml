@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.sutek.jdbcoraclepomdocker.AppTest" time="0.041" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.sutek.jdbcoraclepomdocker.AppTest" time="0.051" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Apps\Java\jdk-17\bin"/>
-    <property name="sun.java.command" value="C:\Users\x239757\AppData\Local\Temp\surefire970967019213185316\surefirebooter2634391596343027022.jar C:\Users\x239757\AppData\Local\Temp\surefire970967019213185316 2022-04-09T11-47-11_712-jvmRun1 surefire6173958473195968192tmp surefire_018298995294638183599tmp"/>
+    <property name="sun.java.command" value="C:\Users\x239757\AppData\Local\Temp\surefire14267691797250269978\surefirebooter14974467549221330485.jar C:\Users\x239757\AppData\Local\Temp\surefire14267691797250269978 2022-04-09T12-39-33_064-jvmRun1 surefire12808785761711968615tmp surefire_012461908995382728882tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="c:\Code\MyJava\OracleJDBC\jdbc-oracle-docker\my-app\target\test-classes;c:\Code\MyJava\OracleJDBC\jdbc-oracle-docker\my-app\target\classes;C:\Users\x239757\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\x239757\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\x239757\.m2\repository\com\oracle\ojdbc11\19.3\ojdbc11-19.3.jar;C:\Users\x239757\.m2\repository\com\oracle\jdbc\ojdbc8\12.2.0.1\ojdbc8-12.2.0.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\x239757\AppData\Local\Temp\surefire970967019213185316\surefirebooter2634391596343027022.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\x239757\AppData\Local\Temp\surefire14267691797250269978\surefirebooter14974467549221330485.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17+35-LTS-2724"/>

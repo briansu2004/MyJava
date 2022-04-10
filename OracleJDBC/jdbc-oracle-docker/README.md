@@ -30,12 +30,21 @@ mvn package
 
 @rem java -cp target\my-app-1.0-SNAPSHOT.jar;C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc11.jar com.sutek.jdbcoraclepomdopcker.App
 
+C:\Apps\Java\jdk-11.0.12\bin\java -jar target/my-app-1.0-SNAPSHOT.jar
 
-java -jar target/my-app-1.0-SNAPSHOT.jar
+C:\Apps\Java\jdk-11.0.12\bin\java -jar target/my-app-1.0-SNAPSHOT.jar -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar
+
+C:\Apps\Java\openjdk-11.0.2\bin\java -jar target/my-app-1.0-SNAPSHOT.jar
+
+C:\Apps\Java\openjdk-11.0.2\bin\java -jar target/my-app-1.0-SNAPSHOT.jar -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar
 
 java -jar target/my-app-1.0-SNAPSHOT.jar -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc11.jar
 
 java -jar target/my-app-1.0-SNAPSHOT.jar -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar
+
+
+java -jar target/my-app-1.0-SNAPSHOT.jar
+
 
 ```
 

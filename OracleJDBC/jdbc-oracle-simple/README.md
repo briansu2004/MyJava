@@ -1,5 +1,9 @@
 # Mind the ojdbc version of Oracle Drivers
 
+## Local Oracle XE 21c works!
+
+![](image/README/oracle_xe_local.png)
+
 ## VSCode Java how to add jar to classpath
 
 ![](image/README/vscode_java_jar.png)
@@ -126,4 +130,31 @@ Error: LinkageError occurred while loading main class OpenJdkJdbcOracleXE
 C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple>c: && cd c:\Code\MyJava\OracleJDBC\jdbc-oracle-simple && cmd /C "C:\Apps\Java\openjdk-11.0.2\bin\java OpenJdkJdbcOracleXE "
 Error: LinkageError occurred while loading main class OpenJdkJdbcOracleXE
         java.lang.UnsupportedClassVersionError: OpenJdkJdbcOracleXE has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 55.0
+```
+
+## Interestinmg
+
+```
+C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple>C:\Apps\Java\openjdk-11.0.2\bin\java -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar JdbcOracleDriverSimple
+Error: Could not find or load main class JdbcOracleDriverSimple
+Caused by: java.lang.ClassNotFoundException: JdbcOracleDriverSimple
+
+C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple> cmd /C "C:\Apps\Java\jdk-17\bin\java.exe --enable-preview -XX:+ShowCodeDetailsInExceptionMessages @C:\Users\.\AppData\Local\Temp\cp_3udzmltjui97j2dt96qx1lq3p.argfile JdbcOracleDriverSimple "
+java.sql.SQLRecoverableException: IO Error: The Network Adapter could not establish the connection (CONNECTION_ID=G8JAUHBRRe256IMB2RbBGA==)
+
+C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple> cmd /C "C:\Apps\Java\openjdk-11.0.2\bin\java.exe --enable-preview -XX:+ShowCodeDetailsInExceptionMessages @C:\Users\.\AppData\Local\Temp\cp_3udzmltjui97j2dt96qx1lq3p.argfile JdbcOracleDriverSimple "
+Unrecognized VM option 'ShowCodeDetailsInExceptionMessages'.
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+
+C:\Code\MyJava\OracleJDBC\jdbc-oracle-simple>cmd /C "C:\Apps\Java\openjdk-11.0.2\bin\java.exe --enable-preview -XX:+ShowCodeDetailsInExceptionMessages -cp C:\Code\MyJava\OracleJDBC\ojdbc\ojdbc8.jar JdbcOracleDriverSimple "
+Unrecognized VM option 'ShowCodeDetailsInExceptionMessages'
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+```
+
+`C:\Users\.\AppData\Local\Temp\cp_3udzmltjui97j2dt96qx1lq3p.argfile`
+
+```
+-cp "C:\\Users\\.\\AppData\\Roaming\\Code\\User\\workspaceStorage\\e5d90add0af33ae1439e4f5d3fb20128\\redhat.java\\jdt_ws\\jdbc-oracle-simple_a3b9ec8e\\bin;c:\\Code\\MyJava\\OracleJDBC\\ojdbc\\ojdbc11.jar"
 ```
