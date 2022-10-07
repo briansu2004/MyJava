@@ -8,11 +8,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@JsonSerialize
-@JsonDeserialize
+//@JsonSerialize
+//@JsonDeserialize
 public class Skill {
-	@JsonProperty("skillId")
+//	@JsonProperty("skillId")
 	private String skillId;
-	@JsonProperty("skillName")
+//	@JsonProperty("skillName")
 	private String skillName;
 }

@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @Data
 @AllArgsConstructor
-@Qualifier("skillRequest")
-@JsonSerialize
-@JsonDeserialize
+//@Qualifier("skillRequest")
+//@JsonSerialize
+//@JsonDeserialize
 public class SkillRequest {
 	@JsonProperty("skillName")
 	private String skillName;
