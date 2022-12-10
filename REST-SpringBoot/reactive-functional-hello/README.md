@@ -35,11 +35,13 @@ GreetingClient.java
 
 ## Build an executable JAR
 
-mvnw spring-boot:run
+`mvnw spring-boot:run`
 
-java -jar target/gs-reactive-rest-service-0.1.0.jar
+`java -jar target/reactive-functional-hello-0.0.1-SNAPSHOT.jar`
 
 ![Alt text](image/README/maven_sprintboot_run.png)
+
+`mvnw spring-boot:start`
 
 ## Test the Application
 
