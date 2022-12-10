@@ -2,9 +2,15 @@
 
 ## Starting with Spring Initializr
 
+![Alt text](image/README/SpringInitializr.png)
+
+### Load into IDE
+
 IntelliJ has some issues on the maven plugin.
 
-VSCode works fine.
+VSCode works fine - need to make sure JDK settings are correct.
+
+![Alt text](image/README/vscode_settings_jdk.png)
 
 ```dos
 c:\>java -version
@@ -33,6 +39,12 @@ mvnw spring-boot:run
 
 java -jar target/gs-reactive-rest-service-0.1.0.jar
 
+![Alt text](image/README/maven_sprintboot_run.png)
+
 ## Test the Application
 
 GreetingRouterTest.java
+
+## Integration Test with Postman
+
+![1670681282196](image/README/1670681282196.png)
