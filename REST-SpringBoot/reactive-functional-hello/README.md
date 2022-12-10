@@ -52,7 +52,16 @@ GreetingClient.java
 
 ## Unit test
 
-...
+The spring-boot-starter-test is the primary dependency that contains the majority of elements required for our tests.
+
+```xml
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-test</artifactId>
+   <scope>test</scope>
+   <version>2.5.0</version>
+  </dependency>
+```
 
 ## Test the Application (integration Test)
 
