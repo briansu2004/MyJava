@@ -27,6 +27,13 @@ Greeting.java
 
 GreetingRouter.java
 
+VSCode can't auto-import the following:
+
+```java
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
+```
+
 ## Create a WebClient
 
 GreetingClient.java
@@ -43,9 +50,15 @@ GreetingClient.java
 
 `mvnw spring-boot:start`
 
-## Test the Application
+## Unit test
+
+...
+
+## Test the Application (integration Test)
 
 GreetingRouterTest.java
+
+![1670685158957](image/README/1670685158957.png)
 
 ## Integration Test with Postman
 
