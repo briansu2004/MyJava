@@ -19,6 +19,6 @@ public class FactorialSquareCalculator extends RecursiveTask<Integer> {
 
         calculator.fork();
 
-        return n * n + calculator.join();
+        return n * calculator.join();
     }
 }
