@@ -1,4 +1,4 @@
-package dev.danvega.blog.model;
+package com.sutek.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.PersistenceCreator;

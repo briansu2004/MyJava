@@ -1,11 +1,11 @@
-package dev.danvega.blog.model.json;
+package com.sutek.blog.model.json;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import dev.danvega.blog.model.Author;
+import com.sutek.blog.model.Author;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 

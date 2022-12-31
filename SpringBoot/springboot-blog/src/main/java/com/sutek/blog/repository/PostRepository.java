@@ -1,6 +1,6 @@
-package dev.danvega.blog.repository;
+package com.sutek.blog.repository;
 
-import dev.danvega.blog.model.Post;
+import com.sutek.blog.model.Post;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 

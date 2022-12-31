@@ -1,9 +1,9 @@
-package dev.danvega.blog.controller;
+package com.sutek.blog.controller;
 
-import dev.danvega.blog.model.Post;
-import dev.danvega.blog.model.dto.PostDetails;
-import dev.danvega.blog.repository.AuthorRepository;
-import dev.danvega.blog.repository.PostRepository;
+import com.sutek.blog.model.Post;
+import com.sutek.blog.model.dto.PostDetails;
+import com.sutek.blog.repository.AuthorRepository;
+import com.sutek.blog.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;

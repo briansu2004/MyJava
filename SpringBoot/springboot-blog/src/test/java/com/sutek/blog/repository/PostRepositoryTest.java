@@ -1,8 +1,8 @@
-package dev.danvega.blog.repository;
+package com.sutek.blog.repository;
 
-import dev.danvega.blog.model.Author;
-import dev.danvega.blog.model.Comment;
-import dev.danvega.blog.model.Post;
+import com.sutek.blog.model.Author;
+import com.sutek.blog.model.Comment;
+import com.sutek.blog.model.Post;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

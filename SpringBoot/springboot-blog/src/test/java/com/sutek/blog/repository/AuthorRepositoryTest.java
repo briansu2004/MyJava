@@ -1,11 +1,8 @@
-package dev.danvega.blog.repository;
+package com.sutek.blog.repository;
 
-import dev.danvega.blog.model.Author;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.stream.StreamSupport;

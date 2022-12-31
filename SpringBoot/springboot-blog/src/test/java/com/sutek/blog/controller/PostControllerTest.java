@@ -1,6 +1,6 @@
-package dev.danvega.blog.controller;
+package com.sutek.blog.controller;
 
-import dev.danvega.blog.model.Post;
+import com.sutek.blog.model.Post;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
