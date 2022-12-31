@@ -1,6 +1,6 @@
 # My Spring Boot
 
-## How to configure  Sping Boot app for multiple environments
+## How to configure Sping Boot app for multiple environments
 
 Use Spring Boot profiles!
 
@@ -31,13 +31,36 @@ e.g.
 - application-preprod.properties
 - application-prod.properties
 
-### How to set the default profile
+## How to set the default profile
 
 ```yml
 spring:
   profiles:
     active: local
 ```
+
+## How to use Docker and PostgreSQL together
+
+docker-compose.yml
+
+```yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: blog
+```
+
+`docker compose up`
+
+![1672455872741](image/MySpringBoot/1672455872741.png)
+
+![1672456022775](image/MySpringBoot/1672456022775.png)
 
 ## Misc
 
