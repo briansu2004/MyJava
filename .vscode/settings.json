@@ -20,5 +20,6 @@
     "titleBar.inactiveForeground": "#e7e7e799",
     "commandCenter.border": "#e7e7e799"
   },
-  "peacock.color": "#259baf"
+  "peacock.color": "#259baf",
+  "java.compile.nullAnalysis.mode": "automatic"
 }
