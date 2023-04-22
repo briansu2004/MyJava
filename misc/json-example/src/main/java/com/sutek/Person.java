@@ -1,9 +1,21 @@
 package com.sutek;
 
+import java.time.LocalDate;
+
 public class Person {
     private String name;
     private int age;
     private String email;
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    private LocalDate birthDate;
 
     public String getName() {
         return name;

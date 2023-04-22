@@ -1,5 +1,6 @@
 {
   "name": "John Doe",
   "age": 30,
-  "email": "john.doe@example.com"
+  "email": "john.doe@example.com",
+  "birthDate": "1992-06-20"
 }

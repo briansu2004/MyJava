@@ -1,0 +1,3 @@
+@cls
+
+mvn clean package 
