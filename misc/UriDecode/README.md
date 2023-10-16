@@ -1,6 +1,6 @@
 # Maven
 
-## Step 1 - create pom.xml
+## Step #1 - create pom.xml
 
 Quickstart with small issues
 
@@ -8,7 +8,7 @@ Quickstart with small issues
 mvn archetype:generate -DgroupId=com.example -DartifactId=MyMavenProject -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-## Step 2 - update pom.xml
+## Step #2 - update pom.xml
 
 e.g.
 
@@ -53,24 +53,36 @@ e.g.
 </project>
 ```
 
-## Step 3 - mvn clean install
+## Step #3 - mvn clean install
 
 ```dos
 mvn clean install
 ```
 
-## Step 4 - test run
+## Step #4 - test run
 
 ```dos
 mvn exec:java -Dexec.mainClass="com.example.App"
 ```
 
-## Step 5 - code changes
+## Step #5 - code changes
 
 ...
 
-## Step 5 - clean, install and run
+## Step #6 - clean, install and run
 
 ```dos
 mvn clean install exec:java -Dexec.mainClass="com.example.App"
+```
+
+## Step #7 - test
+
+```dos
+mvn test
+```
+
+## Step #8 - clean, install, test and run
+
+```dos
+mvn clean install test exec:java -Dexec.mainClass="com.example.App"
 ```
