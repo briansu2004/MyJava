@@ -75,13 +75,19 @@ mvn exec:java -Dexec.mainClass="com.example.App"
 mvn clean install exec:java -Dexec.mainClass="com.example.App"
 ```
 
-## Step #7 - test
+## Step #7 - smoke test
 
 ```dos
 mvn test
 ```
 
-## Step #8 - clean, install, test and run
+## Step # - add test cases
+
+```dos
+mvn test
+```
+
+## Step #9 - clean, install, test and run
 
 ```dos
 mvn clean install test exec:java -Dexec.mainClass="com.example.App"
