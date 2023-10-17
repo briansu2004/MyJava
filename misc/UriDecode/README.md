@@ -1,4 +1,4 @@
-# Maven
+# Maven Kickstart
 
 ## Step #1 - create pom.xml
 
