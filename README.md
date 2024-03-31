@@ -57,15 +57,12 @@ Implemented an end-to-end Customer 360 project for client Manulife
 
 ## My Spring Boot
 
-### Reactive Spring Boot problems
+[My Spring Boot](MySpringBoot.md)
 
-Reactive Spring Boot supposed to be better than non-Reactive Spring Boot!
 
-However, it has a few big issues as of today - Apr 2023!
+## My J2EE
 
-- Composite Keys is not supported
-
-- Needs Redis for adding cache
+[My J2EE](MyJ2EE.md)
 
 ## Lint
 

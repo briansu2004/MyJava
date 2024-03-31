@@ -1,5 +1,15 @@
 # My Spring Boot
 
+## Reactive Spring Boot problems
+
+Reactive Spring Boot supposed to be better than non-Reactive Spring Boot!
+
+However, it has a few big issues as of today - Apr 2023!
+
+- Composite Keys is not supported
+
+- Needs Redis for adding cache
+
 ## How to configure Sping Boot app for multiple environments
 
 Use Spring Boot profiles!
